@@ -8,7 +8,7 @@ class ItemModel(db.Model):
     idm = db.Column(db.String(80))
     date = db.Column(db.String(80))
     name = db.Column(db.String(80))
-    telephone = db.Column(db.Float)
+    telephone = db.Column(db.String(80))
     email = db.Column(db.String)
     categorie = db.Column(db.String)
     toelichting = db.Column(db.String)
