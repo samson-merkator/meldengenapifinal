@@ -27,6 +27,7 @@ class Item(Resource):
         toelichting = data["toelichting"]
         XCoordinaat = data["XCoordinaat"]
         YCoordinaat = data["YCoordinaat"]
+        image = data["image"]
 
         if ItemModel.find_by_name(idm):
             return{'message':'An item name: {} already exist'.format(idm)},400
@@ -40,7 +41,7 @@ class Item(Resource):
         #cordinates = data["features"][0]['geometry']['coordinates']
         #Score = data["features"][0]['properties']['Score']
         #return {"message":idm}
-        item =ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat)
+        item =ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image)
 
         try:
             item.save_to_db()
@@ -64,16 +65,17 @@ class Item(Resource):
         toelichting = data["toelichting"]
         XCoordinaat = data["XCoordinaat"]
         YCoordinaat = data["YCoordinaat"]
+        image = data["image"]
 
         item =ItemModel.find_by_name(idm)        
-        updated_item = ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat)
+        updated_item = ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image)
 
         if item is None:
-            item =ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat)
+            item =ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image)
         else:
-            item.Score = Score
-            item.latitude = cordinates[0]
-            item.longitude = cordinates[1]
+            item.name = name
+            item.XCoordinaat = XCoordinaat
+            item.YCoordinaat = YCoordinaat
         item.save_to_db()
 
         return updated_item.json()

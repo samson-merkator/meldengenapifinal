@@ -14,8 +14,9 @@ class ItemModel(db.Model):
     toelichting = db.Column(db.String)
     XCoordinaat = db.Column(db.Float)
     YCoordinaat = db.Column(db.Float)
+    image = db.Column(db.BLOB)
 
-    def __init__(self, idm,date,name, telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat):
+    def __init__(self, idm,date,name, telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image):
         self.idm = idm
         self.date = date
         self.name = name
@@ -25,11 +26,12 @@ class ItemModel(db.Model):
         self.toelichting = toelichting 
         self.XCoordinaat = XCoordinaat
         self.YCoordinaat = YCoordinaat
+        self.image = image
 
 
 
     def json(self):
-        return{'id':self.idm,'date':self.date,'name':self.name, 'telephone':self.telephone,'email':self.email,'categorie':self.categorie,'toelichting':self.toelichting,'XCoordinaat':self.XCoordinaat,'YCoordinaat':self.YCoordinaat}
+        return{'id':self.idm,'date':self.date,'name':self.name, 'telephone':self.telephone,'email':self.email,'categorie':self.categorie,'toelichting':self.toelichting,'XCoordinaat':self.XCoordinaat,'YCoordinaat':self.YCoordinaat,'image':self.image}
     
     @classmethod
     def find_by_name(cls, name):
