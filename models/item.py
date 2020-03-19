@@ -14,7 +14,7 @@ class ItemModel(db.Model):
     toelichting = db.Column(db.String)
     XCoordinaat = db.Column(db.Float)
     YCoordinaat = db.Column(db.Float)
-    image = db.Column(db.BLOB)
+    image = db.Column(db.String)
 
     def __init__(self, idm,date,name, telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image):
         self.idm = idm
