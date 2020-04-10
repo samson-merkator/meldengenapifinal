@@ -37,6 +37,10 @@ class ItemModel(db.Model):
     def find_by_name(cls, name):
         return cls.query.filter_by(name=name).first() #SELECT * FROM items WHERE name=name LIMIT 1
 
+    @classmethod
+    def find_by_categorie(cls, categorie):
+        return cls.query.filter_by(categorie=categorie)#SELECT * FROM items WHERE categorie=categorie LIMIT 1
+
 
   
     def save_to_db(self):

@@ -100,3 +100,10 @@ class SingleCrud(Resource):
         if item:
             item.delete_from_db()
         return {'message':'data deleted successfully'}
+
+class Categorie(Resource):
+        def get(self, categorie):  
+            item =ItemModel.find_by_categorie(categorie)
+            if item:
+                return {'items': [item.json() for item in item]}
+            return {'message': 'Caterorie not found'},404   

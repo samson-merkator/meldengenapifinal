@@ -5,7 +5,7 @@ import datetime
 
 from security import authenticate, identity
 from resources.user import UserRegister # work on importing the user UserRegister from user.py first 
-from resources.item import Item, ItemList,SingleCrud
+from resources.item import Item, ItemList,SingleCrud, Categorie
 from db import db
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' # we can specify the type of database from sqlite to postgres and it should work out of the box
@@ -29,9 +29,10 @@ app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(days=365)
 
 
 api.add_resource(Item, '/item') # http://127.0.0.1:5000/birds/weidevogels
-api.add_resource(SingleCrud, '/item/<string:name>') # http://127.0.0.1:5000/birds/weidevogels
+api.add_resource(SingleCrud, '/item/<string:name>') # http://127.0.0.1:5000/birds/weidevogels  '/item/<string:name>')
 api.add_resource(ItemList, '/items') # http://127.0.0.1:5000/birds/
-api.add_resource(UserRegister, '/register') # http://127.0.0.1:5000/register/
+api.add_resource(UserRegister, '/register') # http://127.0.0.1:5000/register/ Categorie
+api.add_resource(Categorie, '/item/cat/<string:categorie>') # http://127.0.0.1:5000/birds/weidevogels
 
 if __name__=='__main__':
     from db import db
