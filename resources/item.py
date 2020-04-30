@@ -28,7 +28,10 @@ class Item(Resource):
         XCoordinaat = data["XCoordinaat"]
         YCoordinaat = data["YCoordinaat"]
         image = data["image"]
-
+        status = data["status"]
+        nearestaddress = data["nearestaddress"]
+        nearestpostal = data["nearestpostal"]
+        nearestplace = data["nearestplace"]
         if ItemModel.find_by_name(idm):
             return{'message':'An item name: {} already exist'.format(idm)},400
 
@@ -41,7 +44,7 @@ class Item(Resource):
         #cordinates = data["features"][0]['geometry']['coordinates']
         #Score = data["features"][0]['properties']['Score']
         #return {"message":idm}
-        item =ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image)
+        item =ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image,status,nearestaddress,nearestpostal,nearestplace)
 
         try:
             item.save_to_db()
@@ -66,12 +69,15 @@ class Item(Resource):
         XCoordinaat = data["XCoordinaat"]
         YCoordinaat = data["YCoordinaat"]
         image = data["image"]
-
+        status = data["status"]
+        nearestaddress = data["nearestaddress"]
+        nearestpostal = data["nearestpostal"]
+        nearestplace = data["nearestplace"]
         item =ItemModel.find_by_name(idm)        
-        updated_item = ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image)
+        updated_item = ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image,status,nearestaddress,nearestpostal,nearestplace)
 
         if item is None:
-            item =ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image)
+            item =ItemModel(idm,date,name,telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image,status,nearestaddress,nearestpostal,nearestplace)
         else:
             item.name = name
             item.XCoordinaat = XCoordinaat

@@ -12,7 +12,7 @@ cursor.execute(create_table)
 #create_table = "Create TABLE IF NOT EXISTS geometry_columns(id INTEGER PRIMARY KEY, name text, score FLOAT, latitude FLOAT, longitude FLOAT)" #Auto incrementing ID (id INTEGER PRIMARY KEY)
 #cursor.execute(create_table)
 
-create_table = "Create TABLE IF NOT EXISTS geometry_columns(id INTEGER PRIMARY KEY, idm text,date text, name text, telephone int, email text, categorie text, toelichting text, XCoordinaat FLOAT, YCoordinaat FLOAT, image BLOB)" #Auto incrementing ID (id INTEGER PRIMARY KEY)
+create_table = "Create TABLE IF NOT EXISTS geometry_columns(id INTEGER PRIMARY KEY, idm text,date text, name text, telephone int, email text, categorie text, toelichting text, XCoordinaat FLOAT, YCoordinaat FLOAT, image BLOB, status text,nearestaddress text,nearestpostal text,nearestplace text)" #Auto incrementing ID (id INTEGER PRIMARY KEY)
 cursor.execute(create_table)
 
 

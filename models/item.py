@@ -15,8 +15,12 @@ class ItemModel(db.Model):
     XCoordinaat = db.Column(db.Float)
     YCoordinaat = db.Column(db.Float)
     image = db.Column(db.String)
+    status = db.Column(db.String)
+    nearestaddress = db.Column(db.String)
+    nearestpostal = db.Column(db.String)
+    nearestplace = db.Column(db.String)
 
-    def __init__(self, idm,date,name, telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image):
+    def __init__(self, idm,date,name, telephone,email,categorie,toelichting,XCoordinaat,YCoordinaat,image,status,nearestaddress,nearestpostal,nearestplace):
         self.idm = idm
         self.date = date
         self.name = name
@@ -27,11 +31,17 @@ class ItemModel(db.Model):
         self.XCoordinaat = XCoordinaat
         self.YCoordinaat = YCoordinaat
         self.image = image
+        self.status = status
+        self.nearestaddress = nearestaddress
+        self.nearestpostal = nearestpostal
+        self.nearestplace = nearestplace
+
+
 
 
 
     def json(self):
-        return{'id':self.idm,'date':self.date,'name':self.name, 'telephone':self.telephone,'email':self.email,'categorie':self.categorie,'toelichting':self.toelichting,'XCoordinaat':self.XCoordinaat,'YCoordinaat':self.YCoordinaat,'image':self.image}
+        return{'id':self.idm,'date':self.date,'name':self.name, 'telephone':self.telephone,'email':self.email,'categorie':self.categorie,'toelichting':self.toelichting,'XCoordinaat':self.XCoordinaat,'YCoordinaat':self.YCoordinaat,'image':self.image,'status':self.status,'nearestaddress':self.nearestaddress,'nearestpostal':self.nearestpostal,'nearestplace':self.nearestplace}
     
     @classmethod
     def find_by_name(cls, name):
