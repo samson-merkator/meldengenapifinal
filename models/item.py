@@ -1,5 +1,10 @@
 import sqlite3
 from db import db
+import sys
+from geojson import Feature, Point, FeatureCollection, Polygon
+import json
+import geojson
+from pprint import pprint
 
 class ItemModel(db.Model):
     __tablename__='geometry_columns'
@@ -41,8 +46,39 @@ class ItemModel(db.Model):
 
 
     def json(self):
-        return{'id':self.idm,'date':self.date,'name':self.name, 'telephone':self.telephone,'email':self.email,'categorie':self.categorie,'toelichting':self.toelichting,'XCoordinaat':self.XCoordinaat,'YCoordinaat':self.YCoordinaat,'image':self.image,'status':self.status,'nearestaddress':self.nearestaddress,'nearestpostal':self.nearestpostal,'nearestplace':self.nearestplace}
+ 
+        #return{'id':self.idm,'date':self.date,'name':self.name, 'telephone':self.telephone,'email':self.email,'categorie':self.categorie,'toelichting':self.toelichting,'XCoordinaat':self.XCoordinaat,'YCoordinaat':self.YCoordinaat,'image':self.image,'status':self.status,'nearestaddress':self.nearestaddress,'nearestpostal':self.nearestpostal,'nearestplace':self.nearestplace}
+      
+            #FeatureCollection(data['features'])
+        #return (data1)
+        return{
+        
+    'type': 'Feature',
+    'id':self.idm,
+    "properties": {    
+    'date':self.date,
+    "name": self.name,
+    'telephone':self.telephone,
+    'email':self.email,
+    'categorie':self.categorie,
+    'toelichting':self.toelichting,
+    'image':self.image,
+    'status':self.status,
+    'nearestaddress':self.nearestaddress,
+    'nearestpostal':self.nearestpostal,
+    'nearestplace':self.nearestplace    
+  },
+    'geometry': {
+      'type': 'Point',
+      'coordinates': [self.XCoordinaat, self.YCoordinaat]
+    }
+    }
     
+
+  
+
+
+
     @classmethod
     def find_by_name(cls, name):
         return cls.query.filter_by(name=name).first() #SELECT * FROM items WHERE name=name LIMIT 1

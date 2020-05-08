@@ -2,6 +2,7 @@ import sqlite3
 from flask_restful import  Resource, reqparse, request
 from flask_jwt import jwt_required
 from models.item import ItemModel
+from geojson import Feature, Point, FeatureCollection, Polygon
 
 class Item(Resource):
     
@@ -89,7 +90,9 @@ class Item(Resource):
 
 class ItemList(Resource):
     def get(self):
-        return {'items': [item.json() for item in ItemModel.query.all()]} #list comprehension
+        return {'items': FeatureCollection([item.json() for item in ItemModel.query.all()])} #list comprehension
+        
+        #return {'items': item.json() for item in ItemModel.query.all()}
         #{'items': list(map(lambda x:x.json(), ItemModel.query.all()))} lambda function 
 
 
